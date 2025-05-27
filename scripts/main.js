@@ -37,7 +37,7 @@ fil.addEventListener('click',()=>{
         console.log(`${urlname}${name}`)
         let comida = data.meals[0]
         console.log(comida)
-        editboxreci.innerHTML += `
+        editboxreci.innerHTML = `
             <div class="box-recipe">
                 <img class="img-recipe" src="${comida.strMealThumb}" alt=""><br/>
                 <h1>${comida.strMeal}</h1><br/><br/>
