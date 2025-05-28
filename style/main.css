@@ -116,10 +116,26 @@ body{
     width: 30%;
 }
 
+.data-namehouse{
+    padding: 0.6%;
+    background-color: #e7be7f;
+    border-radius: 1vw;
+    width: 10%;
+}
+
 .bt{
     width: 13%;
     padding: 0.5%;
     border-radius: 20%;
     object-fit: contain;
     background-color: #f0ce9d;
+}
+
+.flex{
+    display: flex;
+    width: 70%;
+    height: auto;
+    justify-content: center;
+    padding-bottom: 1%;
+    gap: 0.5%;
 }

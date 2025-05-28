@@ -1,9 +1,11 @@
-const urlrandom = `https://www.themealdb.com/api/json/v1/1/random.php`
-const urlname = `https://www.themealdb.com/api/json/v1/1/search.php?s=`
-const editboxrecipe = document.getElementById('reci')
-const editboxreci = document.getElementById('reci1')
-let fil = document.getElementById('vub')
+const urlrandom = `https://www.themealdb.com/api/json/v1/1/random.php`;
+const urlname = `https://www.themealdb.com/api/json/v1/1/search.php?s=`;
+const urlcategory = `https://www.themealdb.com/api/json/v1/1/filter.php?c=`;
+const editboxrecipe = document.getElementById('reci');
+const editboxreci = document.getElementById('reci1');
+let fil = document.getElementById('vub');
 let name = ``;
+let category = ``;
 
 function todo(){
     for (i=0;i<15;i++){ 
@@ -29,9 +31,10 @@ function todo(){
 document.addEventListener('DOMContentLoaded',todo)
 
 fil.addEventListener('click',()=>{
-    console.log(name)
     name = document.getElementById('nplato').value
-    fetch(`${urlname}${name}`)
+    category = document.getElementById('cat').value
+    if (category === "N/A"){
+        fetch(`${urlname}${name}`)
     .then(response=>response.json())
     .then(data=>{
         console.log(`${urlname}${name}`)
@@ -48,8 +51,26 @@ fil.addEventListener('click',()=>{
                 <div data-id="" class="button_slide slide_down"> Ver Más </div>
             </div>
             `;
-            name = ``;
-            console.log(name)
     })
+    }
+    else if (category !== "N/A"){
+        fetch(`${urlcategory}${category}`)
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(`${urlname}${category}`)
+            let comida = data.meals
+            editboxreci.innerHTML = ``;
+            for (i=0;i<comida.length;i++){
+                console.log("holi")
+                editboxreci.innerHTML += `
+                <div class="box-recipe">
+                    <img class="img-recipe" src="${comida[i].strMealThumb}" alt=""><br/>
+                    <h1>${comida[i].strMeal}</h1><br/><br/>
+                    <div data-id="" class="button_slide slide_down"> Ver Más </div>
+                </div>
+                `;
+            };
+        })
+    }
 }
 )
